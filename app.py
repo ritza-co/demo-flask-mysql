@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
@@ -43,7 +43,7 @@ def signUp():
     print(pid)
     db.session.commit()
 
-    return json.dumps({'pid':pid})
+    return jsonify({'pid':pid})
     
     # # validate the received values
     # if name and surname:

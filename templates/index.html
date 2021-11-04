@@ -34,6 +34,7 @@
             data: $('form').serialize(),
             type: 'POST',
             success: function(response) {
+                console.log(response);
                 console.log(response.pid);
                 pid = response.pid;
             },
