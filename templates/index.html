@@ -51,7 +51,7 @@
             console.log("The pid is ", pid);
             $.ajax({
             url: '/view',
-            data: { "pid": pid },
+            data: JSON.stringify({ "pid": pid }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             type: 'POST',
