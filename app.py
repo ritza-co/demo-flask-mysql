@@ -1,7 +1,6 @@
 from flask import Flask, render_template, json, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from .models import Person
 import os
 
 app = Flask(__name__)
@@ -11,6 +10,14 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
+
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(60))
+    surname = db.Column(db.String(60))
+
+    def __repr__(self):
+        return '<Person: {}>'.format(self.name)
 
 @app.route("/")
 def main():
