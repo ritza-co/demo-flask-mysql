@@ -61,10 +61,10 @@ def view():
     pid = request.json['pid']
     print("The view pid: ", pid)
 
-    p1 = db.session.query(Person).get(pid)
+    p1 = db.session.query(Person).get(1)
     print("The p1 person: ", p1)
 
-    person = Person.query.filter_by(id=pid)
+    person = Person.query.filter_by(id=1)
     print("The view person: ", person)
 
     personJSONData = json.dumps(person, indent=4, cls=PersonEncoder)
