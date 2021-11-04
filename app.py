@@ -54,9 +54,10 @@ def signUp():
 @app.route('/view',methods=['POST'])
 def view():
     pid = request.json['pid']
-    print(pid)
+    print("The view pid: ", pid)
 
     person = Person.query.get(pid)
+    print(person)
 
     return jsonify({'person':person})
 
