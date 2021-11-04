@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Flask MySQL App</title>
+
+</head>
+
+<body>
+
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery.min.js', _external=True, _scheme='https') }}"></script>
+
+    <h2>Welcome, please enter your details below to register</h2>
+    <div class="container">
+        <form>
+            <input type="text" name="name" placeholder="Enter Name..." />
+            <br/><br/>
+            <input type="text" name="surname" placeholder="Enter Surname..." />
+            <br/><br/>
+            <button id="btnSignUp">Submit</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+    $('#btnSignUp').click(function() {
+        event.preventDefault();
+        $.ajax({
+            url: '/signUp',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+    });
+    </script>
+</body>
+</html>
