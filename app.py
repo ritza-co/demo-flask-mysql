@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from json import JSONEncoder
 import json
 import os
 
@@ -17,15 +18,15 @@ class Person(db.Model):
     name = db.Column(db.String(60))
     surname = db.Column(db.String(60))
 
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
-
     def __repr__(self):
         return '<Person: {}>'.format(self.name)
 
 db.init_app(app)
 db.create_all()  # Create sql tables for our data models
+
+class PersonEncoder(JSONEncoder):
+    def default(self, o):
+        return o.__dict__
 
 @app.route("/")
 def main():
@@ -61,9 +62,11 @@ def view():
     print("The view pid: ", pid)
 
     person = Person.query.get(pid)
-    print(person)
+    print("The view person: ", person)
 
-    return person.toJSON()
+    personJSONData = json.dumps(person, indent=4, cls=PersonEncoder)
+
+    return personJSONData
 
 if __name__ == "__main__":
     app.run()
