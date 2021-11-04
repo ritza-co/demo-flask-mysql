@@ -12,9 +12,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # db variable initialization
 db = SQLAlchemy(app)
 
-db.init_app(app)
-#db.create_all()  # Create sql tables for our data models
-
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60))
@@ -22,6 +19,9 @@ class Person(db.Model):
 
     def __repr__(self):
         return '<Person: {}>'.format(self.name)
+
+db.init_app(app)
+db.create_all()  # Create sql tables for our data models
 
 @app.route("/")
 def main():
