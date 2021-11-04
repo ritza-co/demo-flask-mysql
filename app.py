@@ -51,5 +51,9 @@ def signUp():
     # else:
     #     return json.dumps({'html':'<span>Enter the required fields</span>'})
 
+@app.route('/view',methods=['POST'])
+def view():
+    
+
 if __name__ == "__main__":
     app.run()

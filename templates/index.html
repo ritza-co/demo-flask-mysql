@@ -20,9 +20,12 @@
             <br/><br/>
             <button id="btnSignUp">Submit</button>
         </form>
+
+        <button id="view">View Message</button>
     </div>
 
     <script type="text/javascript">
+        var pid;
         $(function() {
     $('#btnSignUp').click(function() {
         event.preventDefault();
@@ -31,13 +34,20 @@
             data: $('form').serialize(),
             type: 'POST',
             success: function(response) {
-                console.log(response);
+                console.log(response.pid);
+                pid = response.pid;
             },
             error: function(error) {
                 console.log(error);
             }
         });
     });
+    });
+
+    $(function() {
+        $('#view').click(function() {
+            console.log("The pid is ", pid)
+        });
     });
     </script>
 </body>
