@@ -64,7 +64,7 @@ def view():
     p1 = db.session.query(Person).get(1)
     print("The p1 person: ", p1)
 
-    person = Person.query.filter_by(name="Future").first()
+    person = Person.query.filter_by(name="Future")
     print("The view person: ", person)
 
     personJSONData = json.dumps(person, indent=4, cls=PersonEncoder)
