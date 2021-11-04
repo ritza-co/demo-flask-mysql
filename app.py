@@ -1,7 +1,7 @@
 from flask import Flask, render_template, json, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from models import Person
+from .models import Person
 import os
 
 app = Flask(__name__)
