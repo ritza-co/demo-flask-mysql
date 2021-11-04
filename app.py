@@ -61,6 +61,9 @@ def view():
     pid = request.json['pid']
     print("The view pid: ", pid)
 
+    p1 = db.session.query(Person).get(pid)
+    print("The p1 person: ", p1)
+
     person = Person.query.filter_by(id=pid)
     print("The view person: ", person)
 
