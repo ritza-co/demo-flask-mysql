@@ -1,6 +1,6 @@
-from flask import Flask, render_template, json, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+import json
 import os
 
 app = Flask(__name__, instance_relative_config=False)
@@ -16,6 +16,10 @@ class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60))
     surname = db.Column(db.String(60))
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
 
     def __repr__(self):
         return '<Person: {}>'.format(self.name)
@@ -59,7 +63,7 @@ def view():
     person = Person.query.get(pid)
     print(person)
 
-    return jsonify({'person':person})
+    return person.toJSON()
 
 if __name__ == "__main__":
     app.run()
