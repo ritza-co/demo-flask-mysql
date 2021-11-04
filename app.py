@@ -61,7 +61,7 @@ def view():
     pid = request.json['pid']
     print("The view pid: ", pid)
 
-    person = Person.query.get(pid)
+    person = Person.query.filter_by(id=pid)
     print("The view person: ", person)
 
     personJSONData = json.dumps(person, indent=4, cls=PersonEncoder)
