@@ -53,7 +53,10 @@ def signUp():
 
 @app.route('/view',methods=['POST'])
 def view():
-    
+    pid = request.json['pid']
+    print(pid)
+
+    return json.dumps({'User retrieved!':pid})
 
 if __name__ == "__main__":
     app.run()
