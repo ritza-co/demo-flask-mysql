@@ -56,7 +56,9 @@ def view():
     pid = request.json['pid']
     print(pid)
 
-    return json.dumps({'User retrieved!':pid})
+    person = Person.query.get(pid)
+
+    return jsonify({'person':person})
 
 if __name__ == "__main__":
     app.run()

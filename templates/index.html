@@ -21,6 +21,7 @@
             <button id="btnSignUp">Submit</button>
         </form>
 
+        <br/><br/>
         <button id="view">View Message</button>
     </div>
 
@@ -47,7 +48,20 @@
 
     $(function() {
         $('#view').click(function() {
-            console.log("The pid is ", pid)
+            console.log("The pid is ", pid);
+            $.ajax({
+            url: '/view',
+            data: { "pid": pid },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
         });
     });
     </script>
