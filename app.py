@@ -7,6 +7,7 @@ import os
 app = Flask(__name__, instance_relative_config=False)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://anesum:flasksqlalchemy@db4free.net:3306/flasksqlalchemy"
 app.config["SQLALCHEMY_ECHO"] = False
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -63,13 +64,14 @@ def view():
 
     p1 = db.session.query(Person).get(1)
     print("The p1 person: ", p1)
+    print("The p1 person surname: ", p1.surname)
 
-    person = Person.query.filter_by(name="Future")
-    print("The view person: ", person)
+    #person = Person.query.filter_by(name="Future")
+    #print("The view person: ", person)
 
-    personJSONData = json.dumps(person, indent=4, cls=PersonEncoder)
+    #personJSONData = json.dumps(p1, indent=4, cls=PersonEncoder)
 
-    return personJSONData
+    return jsonify({'person': p1.surname})
 
 if __name__ == "__main__":
     app.run()
