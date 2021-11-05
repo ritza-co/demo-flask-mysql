@@ -62,7 +62,7 @@ def view():
     pid = request.json['pid']
     print("The view pid: ", pid)
 
-    p1 = db.session.query(Person).get(1)
+    p1 = db.session.query(Person).get(pid)
     print("The p1 person: ", p1)
     print("The p1 person surname: ", p1.surname)
 
@@ -71,7 +71,7 @@ def view():
 
     #personJSONData = json.dumps(p1, indent=4, cls=PersonEncoder)
 
-    return jsonify({'person': p1.surname})
+    return jsonify({'name': p1.name, 'surname': p1.surname})
 
 if __name__ == "__main__":
     app.run()
