@@ -7,7 +7,6 @@ import os
 app = Flask(__name__, instance_relative_config=False)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://anesum:flasksqlalchemy@db4free.net:3306/flasksqlalchemy"
 app.config["SQLALCHEMY_ECHO"] = False
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
